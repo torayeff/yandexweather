@@ -20,13 +20,13 @@ function getWeatherForecast(city, callback) {
         after0: {
           dayPart: $('.current-weather__thermometer-name').eq(0).text(),
           temp: $('.current-weather__thermometer_type_after').eq(0).text(),
-          icon: $('.current-weather__col_type_after').eq(0).children('i').attr('class').split(' ')[1]
+          icon: getIcon($('.current-weather__col_type_after').eq(0).children('i').attr('class').split(' ')[1])
         },
 
         after1: {
           dayPart: $('.current-weather__thermometer-name').eq(1).text(),
           temp: $('.current-weather__thermometer_type_after').eq(1).text(),
-          icon: $('.current-weather__col_type_after').eq(1).children('i').attr('class').split(' ')[1]
+          icon: getIcon($('.current-weather__col_type_after').eq(1).children('i').attr('class').split(' ')[1])
         },
 
         sunrise: $('.current-weather__info-row').eq(0).text().split('Закат: ')[0].split('Восход: ')[1],
@@ -70,7 +70,7 @@ function parseDay(dd) {
       airPressure: morning.eq(3).text(),
       humidity: morning.eq(4).text(),
       windDirection: morning.eq(5).children('div').children('abbr').text(),
-      windSpeed: morning.eq(5).children('div').children('span').text() + ' m/s',
+      windSpeed: morning.eq(5).children('div').children('span').text(),
     },
 
     noon: {
@@ -79,7 +79,7 @@ function parseDay(dd) {
       airPressure: noon.eq(3).text(),
       humidity: noon.eq(4).text(),
       windDirection: noon.eq(5).children('div').children('abbr').text(),
-      windSpeed: noon.eq(5).children('div').children('span').text() + ' m/s',
+      windSpeed: noon.eq(5).children('div').children('span').text(),
     },
 
     evening: {
@@ -88,7 +88,7 @@ function parseDay(dd) {
       airPressure: evening.eq(3).text(),
       humidity: evening.eq(4).text(),
       windDirection: evening.eq(5).children('div').children('abbr').text(),
-      windSpeed: evening.eq(5).children('div').children('span').text() + ' m/s',
+      windSpeed: evening.eq(5).children('div').children('span').text(),
     },
 
     night: {
@@ -97,7 +97,7 @@ function parseDay(dd) {
       airPressure: night.eq(3).text(),
       humidity: night.eq(4).text(),
       windDirection: night.eq(5).children('div').children('abbr').text(),
-      windSpeed: night.eq(5).children('div').children('span').text() + ' m/s',
+      windSpeed: night.eq(5).children('div').children('span').text(),
     },
 
     sunrise: dd.children('div.forecast-detailed__sunrise').children('div').text(),
