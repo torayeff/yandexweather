@@ -18,23 +18,23 @@ function getWeatherForecast(city, callback) {
         temp: $('div.current-weather__thermometer_type_now').text(),
         
         after0: {
-          dayPart: dayPartToTm($('.current-weather__thermometer-name').eq(0).text()),
+          dayPart: $('.current-weather__thermometer-name').eq(0).text(),
           temp: $('.current-weather__thermometer_type_after').eq(0).text(),
           icon: $('.current-weather__col_type_after').eq(0).children('i').attr('class').split(' ')[1]
         },
 
         after1: {
-          dayPart: dayPartToTm($('.current-weather__thermometer-name').eq(1).text()),
+          dayPart: $('.current-weather__thermometer-name').eq(1).text(),
           temp: $('.current-weather__thermometer_type_after').eq(1).text(),
           icon: $('.current-weather__col_type_after').eq(1).children('i').attr('class').split(' ')[1]
         },
 
         sunrise: $('.current-weather__info-row').eq(0).text().split('Закат: ')[0].split('Восход: ')[1],
         sunset: $('.current-weather__info-row').eq(0).text().split('Закат: ')[1],
-        windSpeed: $('.current-weather__info-row').eq(1).children('span.wind-speed').text().split(' ')[0] + ' m/s' ,
-        windDirection: windToTm($('.current-weather__info-row').eq(1).children('abbr').text()),
+        windSpeed: $('.current-weather__info-row').eq(1).children('span.wind-speed').text().split(' ')[0] ,
+        windDirection: $('.current-weather__info-row').eq(1).children('abbr').text(),
         humidity: $('.current-weather__info-row').eq(2).text().split(" ")[1],
-        airPressure: $('.current-weather__info-row').eq(3).text().split(" ")[1] + ' mmHg'
+        airPressure: $('.current-weather__info-row').eq(3).text().split(" ")[1]
       }
 
       weather.forecast = [];
@@ -69,7 +69,7 @@ function parseDay(dd) {
       icon: getIcon(morning.eq(1).children('div').children('i').attr('class').split(' ')[2]),
       airPressure: morning.eq(3).text(),
       humidity: morning.eq(4).text(),
-      windDirection: windToTm(morning.eq(5).children('div').children('abbr').text()),
+      windDirection: morning.eq(5).children('div').children('abbr').text(),
       windSpeed: morning.eq(5).children('div').children('span').text() + ' m/s',
     },
 
@@ -78,7 +78,7 @@ function parseDay(dd) {
       icon: getIcon(noon.eq(1).children('div').children('i').attr('class').split(' ')[2]),
       airPressure: noon.eq(3).text(),
       humidity: noon.eq(4).text(),
-      windDirection: windToTm(noon.eq(5).children('div').children('abbr').text()),
+      windDirection: noon.eq(5).children('div').children('abbr').text(),
       windSpeed: noon.eq(5).children('div').children('span').text() + ' m/s',
     },
 
@@ -87,7 +87,7 @@ function parseDay(dd) {
       icon: getIcon(evening.eq(1).children('div').children('i').attr('class').split(' ')[2]),
       airPressure: evening.eq(3).text(),
       humidity: evening.eq(4).text(),
-      windDirection: windToTm(evening.eq(5).children('div').children('abbr').text()),
+      windDirection: evening.eq(5).children('div').children('abbr').text(),
       windSpeed: evening.eq(5).children('div').children('span').text() + ' m/s',
     },
 
@@ -96,7 +96,7 @@ function parseDay(dd) {
       icon: getIcon(night.eq(1).children('div').children('i').attr('class').split(' ')[2]),
       airPressure: night.eq(3).text(),
       humidity: night.eq(4).text(),
-      windDirection: windToTm(night.eq(5).children('div').children('abbr').text()),
+      windDirection: night.eq(5).children('div').children('abbr').text(),
       windSpeed: night.eq(5).children('div').children('span').text() + ' m/s',
     },
 
@@ -106,80 +106,6 @@ function parseDay(dd) {
   };
 
   return forecast;
-}
-
-function dayPartToTm (ru) {
-  switch (ru) {
-    case 'утром':
-      return 'irden';
-      break;
-    case 'днём':
-      return 'gündiz';
-      break;
-    case 'вечером':
-      return 'agşam';
-      break;
-    case 'ночью':
-      return 'gije';
-      break;
-    default:
-      return '-';
-  }
-}
-
-function windToTm (ru) {
-  switch (ru) {
-    case 'С':
-      return 'Dg';
-      break;
-    case 'СВ':
-      return 'Dg-Gd';
-      break;
-    case 'СЮ':
-      return 'Dg-Go';
-      break;
-    case 'СЗ':
-      return 'Dg-Gb';
-      break;
-    case 'В':
-      return 'Gd';
-      break;
-    case 'ВС':
-      return 'Gd-Dg';
-      break;
-    case 'ВЮ':
-      return 'Gd-Go';
-      break;
-    case 'ВЗ':
-      return 'Gd-Gb';
-      break;
-    case 'Ю':
-      return 'Go';
-      break;
-    case 'ЮС':
-      return 'Go-Dg';
-      break;
-    case 'ЮВ':
-      return 'Go-Gd';
-      break;
-    case 'ЮЗ':
-      return 'Go-Gb';
-      break;
-    case 'З':
-      return 'Gb';
-      break;
-    case 'ЗС':
-      return 'Gb-Dg';
-      break;
-    case 'ЗВ':
-      return 'Gb-Gd';
-      break;
-    case 'ЗЮ':
-      return 'Gb-Go';
-      break;
-    default:
-      return '-';
-  }
 }
 
 function getIcon (iconAttr) {
@@ -211,7 +137,7 @@ function getIcon (iconAttr) {
   icons['icon_thumb_skc-n'] = 'skc_n.svg'; 
   icons['icon_thumb_wnd'] = 'wnd.svg'; 
 
-  return 'icons/' + icons[iconAttr];
+  return 'https://yastatic.net/weather/i/icons/blueye/color/svg/' + icons[iconAttr];
 }
 
 exports.getWeatherForecast = getWeatherForecast;

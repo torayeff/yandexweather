@@ -1,6 +1,6 @@
 {
   "name": "yandexweather",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Yandex Weather API",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,9 @@
   "dependencies": {
     "cheerio": "^0.20.0",
     "request": "^2.72.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/torayeff/yandexweather.git"
   }
 }
